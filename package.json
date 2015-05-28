@@ -4,7 +4,7 @@
   "description": "Tyler, Shawn, and James ar-drone setup.",
   "main": "drone.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
   "dependencies": {
     "keypress": "^0.2.1",
     "node-hid": "^0.4.0",
