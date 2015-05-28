@@ -3,6 +3,7 @@ var arDrone = require('ar-drone');
 var keypress = require('keypress');
 var temporal = require('temporal');
 
+// Working
 var client  = arDrone.createClient();
 
 // client.createRepl();
@@ -19,7 +20,7 @@ device.on("data", function(data) {
   var click = data.readInt8(1, 0);
   var x = data.readInt8(2, 0);
   var y = data.readInt8(3,0);
-  console.log("X: "+x+", Y: "+y+", click: "+click);
+  //console.log("X: "+x+", Y: "+y+", click: "+click);
 /*
   if (click && flying === false) {
     console.log("Taking off!");
@@ -88,12 +89,28 @@ process.stdin.on('data', function(char) {
     temporal.delay(500, function() {
       client.stop();
     });
+  } else if (char === 'u') {
+    console.log('turn left');
+    temporal.delay(500, function() {
+      client.clockwise(0.5);
+    });
+  } else if (char === 'i') {
+    console.log('turn right');
+    temporal.delay(500, function() {
+      client.counterClockwise(0.5);
+    });
   } else if (char === 'a') {
     console.log("left flip");
     client.animate('flipLeft', 250);
   } else if (char === 'd') {
     console.log("right flip");
     client.animate('flipRight', 250);
+  } else if (char === 'q') {
+    console.log("front flip");
+    client.animate('flipAhead', 250);
+  } else if (char === 'e') {
+    console.log("right flip");
+    client.animate('flipBehind', 250);
   } else { 
     process.stdout.write(char); 
   } 
