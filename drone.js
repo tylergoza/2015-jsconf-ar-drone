@@ -69,14 +69,9 @@ process.stdin.on('data', function(char) {
     client.land();
     console.log('\nExiting on Ctrl-C...'); 
     process.exit(); 
-  } else if (char == 'q') { 
-    console.log('\nExiting on q...'); 
-    process.exit(); 
-  } else if (char == '\5') { 
-    console.log('\nCtrl+E'); 
-  } else if (char == '\14') { 
-    client.land();
-    console.log('\nCtrl+L'); 
+  } else if (char === 'p') {
+    console.log("Disabling emergency flag");
+    client.disableEmergency();
   } else if (char === 'l') {
     console.log("Landing.");
     client.land();
@@ -93,7 +88,12 @@ process.stdin.on('data', function(char) {
     temporal.delay(500, function() {
       client.stop();
     });
-  
+  } else if (char === 'a') {
+    console.log("left flip");
+    client.animate('flipLeft', 250);
+  } else if (char === 'd') {
+    console.log("right flip");
+    client.animate('flipRight', 250);
   } else { 
     process.stdout.write(char); 
   } 
